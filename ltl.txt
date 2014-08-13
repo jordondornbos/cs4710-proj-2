@@ -1,0 +1,2 @@
+spin -a -f "![]mutex" parallel.pml
+spin -a -f "!<>cs" parallel.pml
