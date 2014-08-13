@@ -29,7 +29,7 @@ active[N] proctype swap() {
     }
 
     /* Critical section start */
-    cs = true;
+    bool cs = true;
     
     assert(count == 1);
     printf("Process %d has the lock\n", _pid);
