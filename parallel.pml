@@ -1,10 +1,12 @@
 
 #define N 10
+#define mutex (count <= 1)
 
 bool locked = false;
 int count = 0;
 
 int nums[N] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
 
 active[N] proctype swap() {
     /* Randomly generate a number */
@@ -26,13 +28,13 @@ active[N] proctype swap() {
             count++;
     }
 
-
     /* Critical section start */
-
+    cs = true;
+    
     assert(count == 1);
     printf("Process %d has the lock\n", _pid);
 
-    printf("Process %d is switching %d for %d\n", _pid, nums[i], nums[j]);
+    printf("Process %d is swapping %d and %d\n", _pid, nums[i], nums[j]);
 
     /* Swap the numbers */
     int temp = nums[i];
@@ -40,8 +42,7 @@ active[N] proctype swap() {
     nums[j] = temp;
 
     /* Critical section end */
-
-
+    cs = false;
     count--;
     locked = false;
 }
